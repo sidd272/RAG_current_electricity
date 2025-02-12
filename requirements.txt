@@ -1,0 +1,17 @@
+
+gspread
+openpyxl
+streamlit
+langchain
+langchain-community
+langchain-huggingface
+langchain-openai
+langchain-text-splitters
+langchain-anthropic
+langchain-deepseek
+anthropic
+openai
+sentence-transformers
+faiss-cpu
+python-dotenv
+google-generativeai
