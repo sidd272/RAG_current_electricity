@@ -105,7 +105,7 @@ def extract_urls(text):
     urls = [url for url in re.findall(pattern, text) if url.strip()]
     return urls
 
-def solve_gemini_image_RAG(prompt = "Solve the question", image_path = None):
+def solve_gemini_image_RAG(prompt, image_path = None):
     # prompt = "From the given image, transcribe the question. In case of any figure, describe them in breif."
 
     if image_path is not None:
