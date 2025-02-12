@@ -19,7 +19,7 @@ from langchain_anthropic import ChatAnthropic
 from langchain_deepseek import ChatDeepSeek
 import anthropic
 from openai import OpenAI
-from google import genai
+import google.generativeai as genai
 from PIL import Image
 from google import genai
 import re
@@ -202,7 +202,7 @@ if st.button("Submit"):
     elif model_choice == "DeepSeek":
         st.session_state.response = solve_deepseek_RAG(prompt) if rag_choice == "Yes" else solve_deepseek(prompt)
     else:
-        st.session_state.response = solve_gemini_image_RAG(prompt, image) if rag_choice == "Yes" else solve_gemini_image(prompt,image)
+        st.session_state.response = solve_gemini_image_RAG(prompt, uploaded_file) if rag_choice == "Yes" else solve_gemini_image(prompt,uploaded_file)
 
 st.subheader("Generated Response:")
 st.write(st.session_state.response)  # Access stored response
