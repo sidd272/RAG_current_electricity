@@ -122,6 +122,8 @@ def solve_gemini_image_RAG(prompt = "Solve the question", image_path = None):
         rag_context = ""
         for d in compressed_docs:
             rag_context = rag_context + d.page_content
+        st.subheader("Context")
+        st.write(rag_context)
         urls = extract_urls(rag_context)
         context = " ".join([f"Document {i+1}: {d.page_content}" for i, d in enumerate(compressed_docs)])
         print("Context : ")
@@ -148,6 +150,8 @@ def solve_gemini_image_RAG(prompt = "Solve the question", image_path = None):
         context = " ".join([f"Document {i+1}: {d.page_content}" for i, d in enumerate(compressed_docs)])
         print("Context : ")
         print(context)
+        st.subheader("Context")
+        st.write(rag_context)
         print('='*40)
         final_prompt=f"Use the following context to as assistance wherever applicable to solve the question.Do not mention about the context just give the solution:\n\n{context}\n\nQuestion: {prompt}\nAnswer:"
 
@@ -157,7 +161,7 @@ def solve_gemini_image_RAG(prompt = "Solve the question", image_path = None):
             model="gemini-2.0-flash",
             contents=[final_prompt]
         )
-    return completion
+    return completion.text
 
 
 def solve_gemini_image(prompt = "From the given image, transcribe and solve the question", image_path = None):
@@ -177,7 +181,7 @@ def solve_gemini_image(prompt = "From the given image, transcribe and solve the 
             model="gemini-2.0-flash",
             contents=[prompt]
         )
-    return completion
+    return completion.text
 
 
 st.title("JEE Physics AI Assistant")
