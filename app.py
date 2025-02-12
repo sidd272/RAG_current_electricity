@@ -164,7 +164,7 @@ def solve_gemini_image_RAG(prompt, image_path = None):
     return completion.text
 
 
-def solve_gemini_image(prompt = "From the given image, transcribe and solve the question", image_path = None):
+def solve_gemini_image(prompt , image_path = None):
     
     # final_prompt=""
 
