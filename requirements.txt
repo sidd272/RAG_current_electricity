@@ -15,4 +15,4 @@ sentence-transformers
 faiss-cpu
 python-dotenv
 google-generativeai
-google
+google-genai
