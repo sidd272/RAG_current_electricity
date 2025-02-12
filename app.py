@@ -21,7 +21,6 @@ import anthropic
 from openai import OpenAI
 import google.generativeai as genai
 from PIL import Image
-from google import genai
 import re
 import warnings
 # Load embeddings
