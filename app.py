@@ -19,7 +19,7 @@ from langchain_anthropic import ChatAnthropic
 from langchain_deepseek import ChatDeepSeek
 import anthropic
 from openai import OpenAI
-import google.generativeai as genai
+from google import genai
 from PIL import Image
 import re
 import warnings
