@@ -85,7 +85,14 @@ def solve_claude_RAG(prompt):
     )
     return message.content[0].text
 
-def extract_urls(text):
+def extract_urls_http(text):
+    url_pattern = r'https?://(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&//=]*)'
+    # Find all matches in the text
+    urls = re.findall(url_pattern, text)
+    return urls
+
+
+def extract_url(text):
     """
     Extract URLs from Markdown image syntax: ![](<url>)
     Suppresses escape sequence warnings.
@@ -124,18 +131,18 @@ def solve_gemini_image_RAG(prompt, image_path = None):
             rag_context = rag_context + d.page_content
         st.subheader("Context")
         st.write(rag_context)
-        urls = extract_urls(rag_context)
+        urls = extract_urls_http(rag_context)
         context = " ".join([f"Document {i+1}: {d.page_content}" for i, d in enumerate(compressed_docs)])
         print("Context : ")
         print(context)
         print('='*40)
-        final_prompt=f"Use the following context to as assistance wherever applicable to solve the question.Do not mention about the context just give the solution:\n\n{context}\n\nQuestion: {transcribe_text + prompt}\nAnswer:"
+        final_prompt=f"Use the following context to as assistance wherever applicable to solve the question. Any external URLs can be used as context. Do not mention about the context just give the solution:\n\n{context}\n\nQuestion: {transcribe_text + prompt}\nAnswer:"
 
         client = genai.Client(api_key="AIzaSyDYN8QsgaLZnt7G6gw4UapBz44Tcv_k99o")
 
         completion = client.models.generate_content(
             model="gemini-2.0-flash",
-            contents=[final_prompt,"Understand any diagrams from the question image and use it to answer the question",image]
+            contents=[final_prompt,"Understand any diagrams from the question image and use it to answer the question",image, urls]
         )
         
 
