@@ -135,7 +135,7 @@ def solve_gemini_image_RAG(prompt, image_path = None):
 
         completion = client.models.generate_content(
             model="gemini-2.0-flash",
-            contents=[final_prompt]
+            contents=[final_prompt,"Understand any diagrams from the question image and use it to answer the question",image]
         )
         
 
