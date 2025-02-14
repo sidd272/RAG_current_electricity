@@ -124,8 +124,7 @@ def solve_gemini_image_RAG(prompt, image_path = None):
             contents=[read_image_prompt, image]
         )
         transcribe_text = transcribe.text
-        st.subheader("Transcription")
-        st.write(transcribe_text)
+        print(transcribe_text)
         compressed_docs = retriever.invoke(transcribe_text)
         rag_context = ""
         for d in compressed_docs:
